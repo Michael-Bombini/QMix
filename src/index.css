@@ -3,5 +3,35 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
+}
+ul li,
+ol li {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.g-12 {
+  gap: 12px;
+}
+.justify-center {
+  justify-content: center;
+}
+.align-center {
+  align-items: center;
 }

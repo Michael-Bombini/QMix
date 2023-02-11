@@ -4,7 +4,7 @@ export default function Navigation() {
   return (
     <nav className="navbar">
       <Link className="logo" to={"/"}>
-        Quiz Game
+        QMix
       </Link>
       <ul className="navbar-nav">
         <li className="nav-item">
