@@ -9,7 +9,7 @@ export default function CategoryLink({
   return (
     <Link
       to={`/quiz/`}
-      state={{ categoryId: categoryId }}
+      state={{ categoryId: categoryId, categoryName: categoryName }}
       style={{ backgroundColor: categoryColor }}
       key={categoryId}
     >
