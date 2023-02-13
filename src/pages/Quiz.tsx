@@ -3,20 +3,29 @@ import { Navigate, useLocation } from "react-router";
 import { Question } from "../interfaces/Question";
 import difficulties from "../data/difficulties";
 import "./Quiz.css";
+import QuizGame from "../components/quiz/QuizGame";
 export default function Quiz() {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [chosenDifficulty, setChosenDifficulty] = useState("");
   const [userName, setUserName] = useState("");
   const [start, setStart] = useState(false);
+  const [errors, setErrors] = useState(false);
 
   let { state } = useLocation();
+  const {categoryId , categoryName} = state;
   if (!state) {
     Navigate({ to: "/" });
   }
+  console.log(state);
+  
 
   function checkGame() {
-    if (userName && chosenDifficulty) {
+    const user = userName.trim();
+    setErrors(false);
+    if (user && chosenDifficulty) {
       setStart(true);
+    } else {
+      setErrors(true);
     }
   }
 
@@ -47,7 +56,7 @@ export default function Quiz() {
           />
           <div className="difficulty flex flex-wrap justify-center">
             {difficulties.map((difficulty) => (
-              <button
+              <button key={difficulty.difficultyName}
                 style={{
                   backgroundColor: difficulty.difficultyColor,
                   boxShadow:
@@ -64,11 +73,16 @@ export default function Quiz() {
               </button>
             ))}
           </div>
-
+          {errors && (
+            <p className="errors">
+              Scegli la difficoltà e imposta il tuo username prima di iniziare a
+              giocare
+            </p>
+          )}
           <button onClick={checkGame}>Start Game!</button>
         </div>
       )}
-      {start && <p>domande quiz</p>}
+      {start && <QuizGame username={userName} difficulty={chosenDifficulty} categoryId={categoryId} categoryName={categoryName}  />}
     </div>
   );
 }

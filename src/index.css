@@ -42,3 +42,11 @@ a {
 main {
   height: calc(100vh - 64px);
 }
+
+.errors {
+  font-size: 1.1rem;
+  text-align: center;
+  max-width: 30ch;
+  margin: 0.9rem 0;
+  color: #830202;
+}
