@@ -1,0 +1,43 @@
+.start {
+  height: 100%;
+  max-height: 50vh;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.start input[type="text"] {
+  padding: 0.2rem 0.8rem;
+  text-align: center;
+  border-radius: 50px;
+  border: 2px solid #6a5be2;
+  font-size: 20px;
+  transition: all 0.3s ease-in-out;
+  width: 290px;
+  height: 50px;
+  margin: 20px 0;
+}
+
+.start input[type="text"]:focus {
+  border-color: #6a5be2;
+  box-shadow: 0 0 15px #4832f4;
+  outline: none;
+}
+
+.start .difficulty button {
+  margin: 10px;
+  padding: 0.9rem 1.6rem;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  color: white;
+  border-radius: 8px;
+  border: 0px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.start .difficulty button:active {
+  transform: scale(0.95);
+}
