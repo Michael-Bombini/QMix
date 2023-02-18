@@ -1,22 +1,20 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Navigate, useLocation } from "react-router";
-import { Question } from "../interfaces/Question";
 import difficulties from "../data/difficulties";
 import "./Quiz.css";
 import QuizGame from "../components/quiz/QuizGame";
 export default function Quiz() {
-  const [questions, setQuestions] = useState<Question[]>([]);
   const [chosenDifficulty, setChosenDifficulty] = useState("");
   const [userName, setUserName] = useState("");
   const [start, setStart] = useState(false);
   const [errors, setErrors] = useState(false);
 
   let { state } = useLocation();
-  const {categoryId , categoryName} = state;
+  
+  const { categoryId, categoryName } = state;
   if (!state) {
     Navigate({ to: "/" });
   }
-  console.log(state);
   
 
   function checkGame() {
@@ -29,34 +27,29 @@ export default function Quiz() {
     }
   }
 
-  useEffect(() => {
-    async function fetchData() {
-      if (start) {
-        const resp = await fetch(
-          "https://opentdb.com/api.php?amount=10&category=31"
-        );
-        const data = await resp.json();
-        setQuestions(data.results);
-      }
-    }
-    fetchData();
-  }, [start]);
-
   return (
     <div className="h-100">
       {!start && (
         <div className="start">
+          <div className="relative">
+            <h1>Lets Play</h1>
+            <span className="absolute abs1">?</span>
+            <span className="absolute abs2">?</span>
+            <span className="absolute abs3">?</span>
+        
+          </div>
           <input
             type="text"
             name=""
             id=""
-            onChange={(e) => setUserName(e.target.value)}
+            onChange={(e) => setUserName(e.target.value.trim())}
             placeholder="Enter your Username"
             maxLength={30}
           />
-          <div className="difficulty flex flex-wrap justify-center">
+          <div className="difficulty flex flex-wrap justify-center g-24">
             {difficulties.map((difficulty) => (
-              <button key={difficulty.difficultyName}
+              <button
+                key={difficulty.difficultyName}
                 style={{
                   backgroundColor: difficulty.difficultyColor,
                   boxShadow:
@@ -79,10 +72,19 @@ export default function Quiz() {
               giocare
             </p>
           )}
-          <button onClick={checkGame}>Start Game!</button>
+          <button className="startGame" onClick={checkGame}>
+            Start Game!
+          </button>
         </div>
       )}
-      {start && <QuizGame username={userName} difficulty={chosenDifficulty} categoryId={categoryId} categoryName={categoryName}  />}
+      {start && (
+        <QuizGame
+          username={userName}
+          difficulty={chosenDifficulty}
+          categoryId={categoryId}
+          categoryName={categoryName}
+        />
+      )}
     </div>
   );
 }

@@ -1,0 +1,16 @@
+.questionsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin: 1.5rem 0;
+}
+button.question {
+  font-size: 1.5rem;
+  background: #6a5be2;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  color: #fff;
+}

@@ -1,0 +1,12 @@
+.timer {
+  border: 3px solid #4832f4;
+  color: #1f175b;
+  font-weight: bolder;
+  border-radius: 100%;
+  font-size: 2rem;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  display: block;
+  padding: 0.5rem;
+}

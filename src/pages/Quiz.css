@@ -1,6 +1,6 @@
 .start {
   height: 100%;
-  max-height: 50vh;
+  max-height: 70vh;
   flex-direction: column;
   display: flex;
   align-items: center;
@@ -26,7 +26,6 @@
 }
 
 .start .difficulty button {
-  margin: 10px;
   padding: 0.9rem 1.6rem;
   text-align: center;
   text-transform: uppercase;
@@ -40,4 +39,34 @@
 
 .start .difficulty button:active {
   transform: scale(0.95);
+}
+
+.startGame {
+  margin-top: 3rem;
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #4832f4;
+  color: #fff;
+}
+
+span.absolute {
+  color: rgba(71, 50, 227, 0.8);
+  z-index: -1;
+}
+.abs1 {
+  top: 60%;
+  left: 100%;
+  transform: scale(10.5) rotate(35deg);
+}
+.abs2 {
+  top: 25%;
+  left: 43%;
+  transform: scale(10.5) rotate(35deg);
+}
+.abs3 {
+  top: 60%;
+  right: 100%;
+  transform: scale(10.5) rotate(315deg);
 }
