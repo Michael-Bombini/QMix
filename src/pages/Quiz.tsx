@@ -10,12 +10,13 @@ export default function Quiz() {
   const [errors, setErrors] = useState(false);
 
   let { state } = useLocation();
-  
-  const { categoryId, categoryName } = state;
+
   if (!state) {
     Navigate({ to: "/" });
+    return null;
   }
-  
+
+  const { categoryId, categoryName } = state;
 
   function checkGame() {
     const user = userName.trim();
@@ -36,7 +37,6 @@ export default function Quiz() {
             <span className="absolute abs1">?</span>
             <span className="absolute abs2">?</span>
             <span className="absolute abs3">?</span>
-        
           </div>
           <input
             type="text"
