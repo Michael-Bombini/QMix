@@ -47,37 +47,42 @@ export default function QuizGame({
     setSelectedAnswer("");
   }, [currentQuestion]);
 
-
   useEffect(() => {
-    if(timeOver && selectedAnswer)
-    MySwal.fire({
-      title: "Time Out!",
-      icon: "question",
-    });
+    if (timeOver && !selectedAnswer) {
+      const tempAnswer = DOMPurify.sanitize(
+        questions[currentQuestion].correct_answer
+      );
+      MySwal.fire({
+        title: "Time Out!",
+        icon: "question",
+        text: `The correct answer was ${tempAnswer}`,
+      });
+      setSelectedAnswer("");
+    }
   }, [timeOver]);
 
   useEffect(() => {
-    
     if (questions[currentQuestion] && selectedAnswer) {
       if (selectedAnswer === questions[currentQuestion].correct_answer) {
         MySwal.fire({
           title: "Correct Answer!",
           iconHtml: "&#x1F600;",
         });
-        setPoints((prev) => prev+1)
+        setPoints((prev) => prev + 1);
       } else if (
         questions[currentQuestion] &&
         selectedAnswer !== questions[currentQuestion].correct_answer
       ) {
-        
+        const tempAnswer = DOMPurify.sanitize(
+          questions[currentQuestion].correct_answer
+        );
         MySwal.fire({
           title: "Wrong Answer",
           iconHtml: "&#x1F622;",
-          text: `The correct answer was ${DOMPurify.sanitize(questions[currentQuestion].correct_answer)}`,
+          text: `The correct answer was ${tempAnswer}`,
         });
       }
       setTimeOver(true);
-      setSelectedAnswer("");
     }
   }, [selectedAnswer]);
 
@@ -113,7 +118,9 @@ export default function QuizGame({
           </button>
         </div>
       )}
-      {!loading && !questions[currentQuestion] && <p>Finite le con {points} punti</p>}
+      {!loading && !questions[currentQuestion] && (
+        <p>Finite le con {points} punti</p>
+      )}
     </div>
   );
 }
