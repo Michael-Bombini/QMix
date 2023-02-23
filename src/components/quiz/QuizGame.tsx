@@ -5,6 +5,8 @@ import Timer from "./Timer";
 import "./QuizGame.css";
 import RenderQuestions from "./RenderQuestions";
 import DOMPurify from "dompurify";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 export default function QuizGame({
   username,
@@ -17,13 +19,14 @@ export default function QuizGame({
   const [timeOver, setTimeOver] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [points, setPoints] = useState(0);
+  const [selectedAnswer, setSelectedAnswer] = useState("");
+  const MySwal = withReactContent(Swal);
 
   useEffect(() => {
     setLoading(true);
     async function fetchData() {
       const amount =
         difficulty === "easy" ? 5 : difficulty === "normal" ? 10 : 20;
-      console.log(amount);
 
       try {
         const resp = await fetch(
@@ -39,6 +42,44 @@ export default function QuizGame({
     }
     fetchData();
   }, []);
+
+  useEffect(() => {
+    setSelectedAnswer("");
+  }, [currentQuestion]);
+
+
+  useEffect(() => {
+    if(timeOver && selectedAnswer)
+    MySwal.fire({
+      title: "Time Out!",
+      icon: "question",
+    });
+  }, [timeOver]);
+
+  useEffect(() => {
+    
+    if (questions[currentQuestion] && selectedAnswer) {
+      if (selectedAnswer === questions[currentQuestion].correct_answer) {
+        MySwal.fire({
+          title: "Correct Answer!",
+          iconHtml: "&#x1F600;",
+        });
+        setPoints((prev) => prev+1)
+      } else if (
+        questions[currentQuestion] &&
+        selectedAnswer !== questions[currentQuestion].correct_answer
+      ) {
+        
+        MySwal.fire({
+          title: "Wrong Answer",
+          iconHtml: "&#x1F622;",
+          text: `The correct answer was ${DOMPurify.sanitize(questions[currentQuestion].correct_answer)}`,
+        });
+      }
+      setTimeOver(true);
+      setSelectedAnswer("");
+    }
+  }, [selectedAnswer]);
 
   return (
     <div className="h-100 flex align-center justify-center">
@@ -56,11 +97,13 @@ export default function QuizGame({
               __html: DOMPurify.sanitize(questions[currentQuestion].question),
             }}
           ></div>
-          <RenderQuestions
-            questions={questions[currentQuestion].incorrect_answers}
-            answer={questions[currentQuestion].correct_answer}
-          />
-
+          {!timeOver && (
+            <RenderQuestions
+              questions={questions[currentQuestion].incorrect_answers}
+              answer={questions[currentQuestion].correct_answer}
+              setSelectedAnswer={setSelectedAnswer}
+            />
+          )}
           <button
             className="nextQuestionBtn"
             disabled={!timeOver}
@@ -68,10 +111,9 @@ export default function QuizGame({
           >
             Next question
           </button>
-          {timeOver && <p>tempo fine</p>}
         </div>
       )}
-      {!loading && !questions[currentQuestion] && <p>Finite le domande</p>}
+      {!loading && !questions[currentQuestion] && <p>Finite le con {points} punti</p>}
     </div>
   );
 }
