@@ -11,7 +11,7 @@ export default function Timer({
   currentQuestion,
   timeOver,
 }: Props) {
-  const [timeLeft, setTimeLeft] = useState(1);
+  const [timeLeft, setTimeLeft] = useState(30);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -27,7 +27,7 @@ export default function Timer({
 
   useEffect(() => {
     onSetTimeOver(false);
-    setTimeLeft(10);
+    setTimeLeft(30);
   }, [currentQuestion]);
 
   return (
