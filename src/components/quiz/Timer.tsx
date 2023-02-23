@@ -5,13 +5,17 @@ interface Props {
   onSetTimeOver: (isTimeOver: boolean) => void;
   currentQuestion: number;
   timeOver: boolean;
+  difficulty: string;
 }
 export default function Timer({
   onSetTimeOver,
   currentQuestion,
   timeOver,
+  difficulty,
 }: Props) {
-  const [timeLeft, setTimeLeft] = useState(30);
+  const [timeLeft, setTimeLeft] = useState(
+    difficulty === "easy" ? 5 : difficulty === "normal" ? 10 : 20
+  );
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -27,7 +31,7 @@ export default function Timer({
 
   useEffect(() => {
     onSetTimeOver(false);
-    setTimeLeft(30);
+    setTimeLeft(difficulty === "easy" ? 30 : difficulty === "normal" ? 20 : 15);
   }, [currentQuestion]);
 
   return (

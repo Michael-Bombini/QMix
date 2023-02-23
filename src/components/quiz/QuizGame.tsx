@@ -96,6 +96,7 @@ export default function QuizGame({
             onSetTimeOver={setTimeOver}
             currentQuestion={currentQuestion}
             timeOver={timeOver}
+            difficulty={difficulty}
           />
           <div
             className="currentQuestion"
