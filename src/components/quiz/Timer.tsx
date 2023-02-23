@@ -14,7 +14,7 @@ export default function Timer({
   difficulty,
 }: Props) {
   const [timeLeft, setTimeLeft] = useState(
-    difficulty === "easy" ? 5 : difficulty === "normal" ? 10 : 20
+    difficulty === "easy" ? 5 : difficulty === "medium" ? 20 : 15
   );
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function Timer({
 
   useEffect(() => {
     onSetTimeOver(false);
-    setTimeLeft(difficulty === "easy" ? 30 : difficulty === "normal" ? 20 : 15);
+    setTimeLeft(difficulty === "easy" ? 30 : difficulty === "medium" ? 20 : 15);
   }, [currentQuestion]);
 
   return (
