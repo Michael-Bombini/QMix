@@ -7,6 +7,7 @@ import RenderQuestions from "./RenderQuestions";
 import DOMPurify from "dompurify";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { Link } from "react-router-dom";
 
 export default function QuizGame({
   username,
@@ -119,7 +120,10 @@ export default function QuizGame({
         </div>
       )}
       {!loading && !questions[currentQuestion] && (
-        <p>Finite le con {points} punti</p>
+        <div className="flex flex-col align-center container">
+          <p>Congratulation you've scored {points} points</p>
+          <Link className="nextQuestionBtn" to={'/'} >Go to home</Link>
+        </div>
       )}
     </div>
   );
