@@ -8,13 +8,8 @@ export default function Navigation() {
       </Link>
       <ul className="navbar-nav">
         <li className="nav-item">
-          <Link to={"/"} className="nav-link">
-            Home
-          </Link>
-        </li>
-        <li className="nav-item">
           <Link to={"/scores"} className="nav-link">
-            Scores
+            Leaderboard
           </Link>
         </li>
       </ul>

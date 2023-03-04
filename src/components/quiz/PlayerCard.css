@@ -1,0 +1,81 @@
+.player-card {
+  background-color: #130960dd;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+.player-position {
+  background-color: #4850dc80;
+  color: white;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 20px;
+  flex-shrink: 0;
+}
+
+.card-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.player-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.player-name {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.player-category {
+  font-size: 18px;
+}
+
+.player-stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.player-difficulty {
+  font-size: 18px;
+}
+
+.player-points {
+  font-size: 24px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.position-1 {
+  background: #ffd700;
+  color: #000;
+}
+.position-2 {
+  background: #c0c0c0;
+  color: #000;
+}
+.position-3 {
+  background: #CD7F32;
+  color: #000;
+}

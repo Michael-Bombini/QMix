@@ -8,6 +8,7 @@ import DOMPurify from "dompurify";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 export default function QuizGame({
   username,
@@ -45,7 +46,19 @@ export default function QuizGame({
   }, []);
 
   useEffect(() => {
-    setSelectedAnswer("");
+    async function asyncEffect() {
+      setSelectedAnswer("");
+      if (!loading && !questions[currentQuestion]) {
+        const data = {
+          username: username,
+          category: categoryName,
+          difficulty: difficulty,
+          points: points
+        }
+        const resp = await axios.post(import.meta.env.VITE_DB_URL , data)
+      }
+    }
+    asyncEffect();
   }, [currentQuestion]);
 
   useEffect(() => {
@@ -123,7 +136,9 @@ export default function QuizGame({
       {!loading && !questions[currentQuestion] && (
         <div className="flex flex-col align-center container">
           <p>Congratulation you've scored {points} points</p>
-          <Link className="nextQuestionBtn" to={'/'} >Go to home</Link>
+          <Link className="nextQuestionBtn" to={"/"}>
+            Go to home
+          </Link>
         </div>
       )}
     </div>
