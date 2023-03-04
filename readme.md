@@ -16,11 +16,11 @@ QMix is a quiz game that will put your knowledge to the test! With a variety of 
 - Axios
 - Firebase
 
-## Deployed url
+## Deployed Project 🚀
 
 You can view the deployed project [Here](https://qmix.vercel.app/).
 
-## Installing and Launching the Project 🚀
+## Installing and Launching the Project ⚙
 
 To get started with QMix, follow these simple steps:
 
