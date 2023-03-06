@@ -8,7 +8,8 @@ import DOMPurify from "dompurify";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { Link } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
+import he from "he";
 
 export default function QuizGame({
   username,
@@ -53,9 +54,9 @@ export default function QuizGame({
           username: username,
           category: categoryName,
           difficulty: difficulty,
-          points: points
-        }
-        const resp = await axios.post(import.meta.env.VITE_DB_URL , data)
+          points: points,
+        };
+        const resp = await axios.post(import.meta.env.VITE_DB_URL, data);
       }
     }
     asyncEffect();
@@ -63,9 +64,10 @@ export default function QuizGame({
 
   useEffect(() => {
     if (timeOver && !selectedAnswer) {
-      const tempAnswer = DOMPurify.sanitize(
+      const decodedAnswer = he.decode(
         questions[currentQuestion].correct_answer
       );
+      const tempAnswer = DOMPurify.sanitize(decodedAnswer);
       MySwal.fire({
         title: "Time Out!",
         icon: "question",
@@ -87,9 +89,10 @@ export default function QuizGame({
         questions[currentQuestion] &&
         selectedAnswer !== questions[currentQuestion].correct_answer
       ) {
-        const tempAnswer = DOMPurify.sanitize(
+        const decodedAnswer = he.decode(
           questions[currentQuestion].correct_answer
         );
+        const tempAnswer = DOMPurify.sanitize(decodedAnswer);
         MySwal.fire({
           title: "Wrong Answer",
           iconHtml: "&#x1F622;",

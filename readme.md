@@ -13,8 +13,10 @@ QMix is a quiz game that will put your knowledge to the test! With a variety of 
 - React Router
 - Sweet Alert 2
 - DomPurify
+- He
 - Axios
 - Firebase
+- Open Trivia Database
 
 ## Deployed Project 🚀
 
