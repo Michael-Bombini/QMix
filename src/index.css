@@ -20,6 +20,9 @@ a {
 button {
   cursor: pointer;
 }
+.pb-8 {
+  padding-bottom: 1rem;
+}
 
 .container {
   width: 80%;
@@ -54,7 +57,7 @@ button {
 }
 
 .h-100 {
-  height: 100%;
+  height: calc(100vh - 64px);
 }
 
 .relative {
@@ -68,9 +71,6 @@ button {
   flex-direction: column;
 }
 
-main {
-  height: calc(100vh - 64px);
-}
 
 .errors {
   font-size: 1.1rem;

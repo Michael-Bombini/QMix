@@ -20,7 +20,7 @@ export default function ScoreBoard() {
   }, []);
 
   return (
-    <div>
+    <div className="pb-8">
       {players.map((player, ind) => (
         <PlayerCard
           key={player.username + ind + player.category}
