@@ -7,7 +7,7 @@ function Home() {
   return (
     <div className="home">
       <h1>QMix</h1>
-      <p>Choice a category to start play</p>
+      <p>Choose a category to start playing.</p>
       <div className="container">
         <ul className="flex g-12 justify-center align-center">
           {categories.map((category) => (
